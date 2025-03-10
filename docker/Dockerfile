@@ -3,11 +3,10 @@
 
 # This file assumes that the frontend has been built using ./scripts/frontend-build
 
-FROM nginxproxymanager/testca AS testca
-FROM letsencrypt/pebble AS pebbleca
-FROM nginxproxymanager/nginx-full:certbot-node
+#FROM nginxproxymanager/nginx-full:certbot-node
+FROM  nginx-full-certbot-jiangchao:latest 
 
-ARG TARGETPLATFORM
+ARG TARGETPLATFORM=linux/i686
 ARG BUILD_VERSION
 ARG BUILD_COMMIT
 ARG BUILD_DATE
@@ -23,11 +22,11 @@ ENV SUPPRESS_NO_CONFIG_WARNING=1 \
 	NPM_BUILD_VERSION="${BUILD_VERSION}" \
 	NPM_BUILD_COMMIT="${BUILD_COMMIT}" \
 	NPM_BUILD_DATE="${BUILD_DATE}" \
-	NODE_OPTIONS="--openssl-legacy-provider"
+	NODE_OPTIONS=""
 
 RUN echo "fs.file-max = 65535" > /etc/sysctl.conf \
 	&& apt-get update \
-	&& apt-get install -y --no-install-recommends jq logrotate \
+	&& apt-get install -y --no-install-recommends jq logrotate python3 build-essential\
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -41,7 +40,14 @@ COPY backend       /app
 COPY frontend/dist /app/frontend
 COPY global        /app/global
 
+
+#RUN apt-get install node
+COPY node-v16.7.0-linux-x86 /node-v16.7.0-linux-x86
+ENV PATH="/node-v16.7.0-linux-x86/bin:${PATH}"
+RUN npm i -g yarn
+
 WORKDIR /app
+# Set environment variables
 RUN yarn install \
 	&& yarn cache clean
 

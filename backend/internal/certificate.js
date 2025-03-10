@@ -1,7 +1,7 @@
 const _                = require('lodash');
 const fs               = require('fs');
 const https            = require('https');
-const tempWrite        = require('temp-write');
+const tempWrite        = import('temp-write');
 const moment           = require('moment');
 const archiver         = require('archiver');
 const path             = require('path');
@@ -13,7 +13,7 @@ const utils            = require('../lib/utils');
 const certbot          = require('../lib/certbot');
 const certificateModel = require('../models/certificate');
 const tokenModel       = require('../models/token');
-const dnsPlugins       = require('../global/certbot-dns-plugins.json');
+const dnsPlugins       = require('../../global/certbot-dns-plugins.json');
 const internalAuditLog = require('./audit-log');
 const internalNginx    = require('./nginx');
 const internalHost     = require('./host');

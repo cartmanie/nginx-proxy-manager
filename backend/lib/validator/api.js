@@ -1,12 +1,13 @@
 const Ajv   = require('ajv/dist/2020');
 const error = require('../error');
 
+const Ajv = require('ajv');
 const ajv = new Ajv({
-	verbose:         true,
-	allErrors:       true,
-	allowUnionTypes: true,
-	strict:          false,
-	coerceTypes:     true,
+	verbose:        true,
+	validateSchema: true,
+	allErrors:      false,
+	format:         'full',
+	coerceTypes:    true
 });
 
 /**

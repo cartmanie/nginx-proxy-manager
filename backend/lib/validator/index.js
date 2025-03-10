@@ -5,13 +5,15 @@ const commonDefinitions = require('../../schema/common.json');
 
 RegExp.prototype.toJSON = RegExp.prototype.toString;
 
+const Ajv = require('ajv');
 const ajv = new Ajv({
-	verbose:         true,
-	allErrors:       true,
-	allowUnionTypes: true,
-	coerceTypes:     true,
-	strict:          false,
-	schemas:         [commonDefinitions]
+	verbose:     true,
+	allErrors:   true,
+	format:      'full',  // strict regexes for format checks
+	coerceTypes: true,
+	schemas:     [
+		definitions
+	]
 });
 
 /**

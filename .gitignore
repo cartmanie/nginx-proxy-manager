@@ -7,3 +7,6 @@ test/node_modules
 */node_modules
 docker/dev/dnsrouter-config.json.tmp
 docker/dev/resolv.conf
+
+build-nginx-proxy-manager*.log
+node-v16.7.0-linux-x86/

@@ -1,12 +1,11 @@
 // Objection Docs:
 // http://vincit.github.io/objection.js/
 
-const bcrypt  = require('bcrypt');
-const db      = require('../db');
-const helpers = require('../lib/helpers');
-const Model   = require('objection').Model;
-const User    = require('./user');
-const now     = require('./now_helper');
+const bcrypt = require('bcryptjs');
+const db     = require('../db');
+const Model  = require('objection').Model;
+const User   = require('./user');
+const now    = require('./now_helper');
 
 Model.knex(db);
 

@@ -1,8 +1,8 @@
-const dnsPlugins = require('../global/certbot-dns-plugins.json');
 const utils      = require('./utils');
 const error      = require('./error');
 const logger     = require('../logger').certbot;
 const batchflow  = require('batchflow');
+const dnsPlugins = require('../../global/certbot-dns-plugins.json');
 
 const CERTBOT_VERSION_REPLACEMENT = '$(certbot --version | grep -Eo \'[0-9](\\.[0-9]+)+\')';
 
