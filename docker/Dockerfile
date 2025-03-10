@@ -4,7 +4,7 @@
 # This file assumes that the frontend has been built using ./scripts/frontend-build
 
 #FROM nginxproxymanager/nginx-full:certbot-node
-FROM  nginx-full-certbot-jiangchao:latest 
+FROM  southpark426/nginx-full-certbot-i386:latest
 
 ARG TARGETPLATFORM=linux/i686
 ARG BUILD_VERSION
